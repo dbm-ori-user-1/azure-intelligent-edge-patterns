@@ -14,7 +14,7 @@ Check out [this video](https://www.youtube.com/watch?v=17UW6veK7SA) to see brief
 
 ## Overview
 
-Gaining meaningful insights from the physical world can be quite complex and time consuming. Camera is quickly becoming the one universal sensor that can capture the essence of the physical world for many different use cases. To be able to reason about your desired events happening in the physical world using cameras you need to be able to ingest, process and reason about many camera streams at once. Creating a video ingestion process with only 1 camera is not an easy task but creating a scalable, yet extensible video pipeline is even more difficult. In addition, understanding things/objects in the physical world requires algorithms that are not easy to build without specialized knowledge and resources. 
+Taking images from a camera and manually tagging them is a tedious and time-consuming task. VoE can capture and tag images automatically. Under the advanced task setting, you can set VoE to collect a specified number of images for retraining. VoE will capture and store these images for you to validate on the images tab. On the next deployment, VoE automatically launches a training job with the newly added images. Thus, VoE provides an easy way to improve model performance without the pain of manually capturing and tagging images. 
 
 <p align="center">
 <img src="assets/VoEGH.gif" width="800"/>
@@ -34,11 +34,19 @@ You can get started learning about VoE's user concepts [here](Tutorial/concepts.
 
 Learn about VoE's architecture and its technical requirements in [this document](Tutorial/req_arch.md).
 
-# Get Started
+## Create a Project
+In this step, you create a new project and add models of the camera attributes you want to include. For example, if you wish to model facial recognition, these attributes might include face recognition, gender recognition, age recognition, emotion recognition, etc.
+
+## Add and Configure Cameras
+In this step, you select the cameras you want to add to the project and configure their attributes. For example, aperture, frame rate, focus mode, focal length, etc.
+
+## Capture Images and Tag Objects
+In this step, you begin to capture images from the camera and tag objects according to the models you created in Step 1. In this step, you train your model to recognize the attributes you selected.
 
 ## Deploy
 
-You can deploy VoE to your edge or [simulated](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-install-iot-edge-linux) device either through a shell installer or Azure ARM template. 
+After you have tested and verified your model, you are ready to deploy it. Typically, you would want to deploy it on more than one camera. On VoE, users can do just that by simply choosing more than one camera during their deployment camera option. VoE uses LVA to parse frames from multiple cameras and auto-adjust frames rate per camera to ensure that each camera frame gets processed. Users can see results on each camera stream by toggling the deployment view to the camera of their choice. Users can also define their area of interest in the camera feed in case they only want a subsection of camera point of view to be used for processing.
+You can deploy VoE to your edge or [simulated](https://docs.microsoft.com/en-us/azure/iot-edge/how-to-install-iot-edge-linux) device either through a shell installer or Azure ARM template.
 
 **If you don't have camera devices to connect to your VoE portal, you can use your own videos by uploading them to your edge device. Please follow the instruction [here](https://github.com/Azure-Samples/azure-intelligent-edge-patterns/blob/master/factory-ai-vision/Tutorial/UploadVideo.md).**
 
